@@ -1,6 +1,7 @@
 package com.example.wearsmarthome.wear.data
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Looper
 import androidx.core.app.ActivityCompat
@@ -22,7 +23,8 @@ interface LocationRepository {
 }
 
 class LocationRepositoryImpl @Inject constructor(
-    private val fusedLocationProviderClient: FusedLocationProviderClient
+    private val fusedLocationProviderClient: FusedLocationProviderClient,
+    private val context: Context
 ) : LocationRepository {
 
     override fun getLocationUpdates(intervalMs: Long): Flow<LocationData> = callbackFlow {
@@ -44,7 +46,7 @@ class LocationRepositoryImpl @Inject constructor(
         }
 
         if (ActivityCompat.checkSelfPermission(
-                fusedLocationProviderClient.applicationContext,
+                context,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -65,7 +67,7 @@ class LocationRepositoryImpl @Inject constructor(
 
     override suspend fun getCurrentLocation(): LocationData? {
         if (ActivityCompat.checkSelfPermission(
-                fusedLocationProviderClient.applicationContext,
+                context,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {

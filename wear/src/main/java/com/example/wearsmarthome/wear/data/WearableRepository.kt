@@ -7,9 +7,9 @@ import com.google.android.gms.wearable.CapabilityClient
 import com.google.android.gms.wearable.MessageClient
 import com.google.android.gms.wearable.NodeClient
 import com.google.android.gms.wearable.Wearable
+import com.google.gson.Gson
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
-import com.google.gson.Gson
 
 interface WearableRepository {
     suspend fun sendLocationData(locationData: LocationData)
