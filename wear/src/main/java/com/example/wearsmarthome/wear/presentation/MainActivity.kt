@@ -60,10 +60,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun WearApp() {
-    MaterialTheme {
-        Surface(
+    androidx.wear.compose.material.MaterialTheme {
+        androidx.wear.compose.material.Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
+            color = androidx.wear.compose.material.MaterialTheme.colors.background
         ) {
             HomeScreen()
         }
